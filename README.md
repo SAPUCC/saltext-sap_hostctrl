@@ -16,6 +16,9 @@ gitfs_remotes:
   - https://github.com/SAPUCC/saltext-sap_hostctrl.git:
     - root: src/saltext/sap_hostctrl
 ```
+In order to enable this, logical links under `src/saltext/sap_hostctrl/` from `<dir_type>` (where the code lives) to `<dir_type>` have been placed, e.g. `modules` -> `_modules`. This will double the source data during build, but:
+ * `_modules` is required for integrating the repo over gitfs
+ * `modules` is required for the salt loader to find the modules / states
 
 ## Usage
 A state using the SAP Host Agent extension looks like this:
