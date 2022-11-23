@@ -16,7 +16,7 @@ gitfs_remotes:
   - https://github.com/SAPUCC/saltext-sap_hostctrl.git:
     - root: src/saltext/sap_hostctrl
 ```
-In order to enable this, logical links under `src/saltext/sap_hostctrl/` from `<dir_type>` (where the code lives) to `<dir_type>` have been placed, e.g. `modules` -> `_modules`. This will double the source data during build, but:
+In order to enable this, logical links under `src/saltext/sap_hostctrl/` from `_<dir_type>` (where the code lives) to `<dir_type>` have been placed, e.g. `_modules` -> `modules`. This will double the source data during build, but:
  * `_modules` is required for integrating the repo over gitfs
  * `modules` is required for the salt loader to find the modules / states
 
@@ -24,7 +24,7 @@ In order to enable this, logical links under `src/saltext/sap_hostctrl/` from `<
 A state using the SAP Host Agent extension looks like this:
 ```jinja
 Outside Discovery is executed:
-  ucp_sap_hostctrl.outside_discovery_executed:
+  sap_hostctrl.outside_discovery_executed:
     - name: sol.my.domain
     - sld_port: 50000
     - sld_username: SLD_DS_USER

@@ -8,4 +8,4 @@ State Modules
 .. autosummary::
     :toctree:
 
-    saltext.sap_hostctrl.states.sap_hostctrl
+    saltext.sap_hostctrl._states.sap_hostctrl

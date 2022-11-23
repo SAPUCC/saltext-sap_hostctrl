@@ -14,19 +14,19 @@ all_states = []
 all_mods = []
 docs_path = Path("docs")
 ref_path = docs_path / "ref"
-mod_path = ref_path / "modules"
-state_path = ref_path / "states"
+mod_path = ref_path / "_modules"
+state_path = ref_path / "_states"
 
 for path in Path("src").glob("**/*.py"):
     if path.name == "__init__.py":
         continue
-    if path.parent.name in ("states", "modules"):
+    if path.parent.name in ("_states", "_modules"):
         kind = path.parent.name
         import_path = ".".join(path.with_suffix("").parts[1:])
-        if kind == "states":
+        if kind == "_states":
             all_states.append(import_path)
             rst_path = state_path / (import_path + ".rst")
-        elif kind == "modules":
+        elif kind == "_modules":
             all_mods.append(import_path)
             rst_path = mod_path / (import_path + ".rst")
 

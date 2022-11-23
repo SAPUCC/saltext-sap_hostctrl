@@ -8,4 +8,4 @@ Execution Modules
 .. autosummary::
     :toctree:
 
-    saltext.sap_hostctrl.modules.sap_hostctrl
+    saltext.sap_hostctrl._modules.sap_hostctrl
