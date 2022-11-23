@@ -5,7 +5,8 @@ Copyright (C) 2022 SAP UCC Magdeburg
 SAP Host Agent state module
 ===========================
 SaltStack module that implements states based on SAP Host Agent functionality.
-:maintainer:    Benjamin Wegener, Alexander Wilke
+
+:codeauthor:    Benjamin Wegener, Alexander Wilke
 :maturity:      new
 :depends:       requests
 :platform:      Linux
@@ -57,6 +58,7 @@ def system_installed(name, password, username="sapadm", **kwargs):
     running many other states against it.
 
     Example:
+
     .. code-block:: jinja
 
         SAP System S4H is installed:
@@ -94,50 +96,53 @@ def outside_discovery_executed(
     **kwargs,
 ):
     """
-    Ensure that SAP Host Agent is configured to use outside discovery and is executed. This state
-    can manage multiple SLD / LMDB configurations, see parameter ``keep_other_config`` for more
-    information.
+        Ensure that SAP Host Agent is configured to use outside discovery and is executed. This state
+        can manage multiple SLD / LMDB configurations, see parameter ``keep_other_config`` for more
+        information.
 
-    name
-        SLD / LMDB fully qualified domain name.
+        name
+            SLD / LMDB fully qualified domain name.
 
-    sld_port
-        Port of the SLD / LMDB.
+        sld_port
+            Port of the SLD / LMDB.
 
-    sld_username
-        Username used for authentication against the SLD / LMDB.
+        sld_username
+            Username used for authentication against the SLD / LMDB.
 
-    sld_password
-        Password used for authentication against the SLD / LMDB.
+        sld_password
+            Password used for authentication against the SLD / LMDB.
 
-    password
-        Password for the user that executes SAP Host Agent commands (see ``username``).
+        password
+            Password for the user that executes SAP Host Agent commands (see ``username``).
 
-    username
-        User that executes SAP Host Agent commands, default is ``sapadm``.
+        username
+            User that executes SAP Host Agent commands, default is ``sapadm``.
 
-    overwrite
-        Overwrite the SLD configuration even if the correct configuration is already set, default is ``False``.
+        overwrite
+            Overwrite the SLD configuration even if the correct configuration is already set,
+            default is ``False``.
 
-    keep_other_config
-        If set to True, other SLD configurations are not removed. Default is ``False``.
+        keep_other_config
+            If set to True, other SLD configurations are not removed. Default is ``False``.
 
-    .. warning:
-        You need to set the parameter ``service/trace = 2`` in ``host_profile`` in order for the SAP Host Agent to write
-        logs that contain information about the result of the last executed outside discovery. This behavior differs
-        between CLI and SOAP exection. If you do not set the parameter, the outside discovery will always be executed.
+        .. warning:
+            You need to set the parameter ``service/trace = 2`` in ``host_profile`` in order for
+            the SAP Host Agent to write logs that contain information about the result of the last
+            executed outside discovery. This behavior differs between CLI and SOAP exection. If
+            you do not set the parameter, the outside discovery will always be executed.
 
-    Example:
+        Example:
+
     .. code-block:: jinja
 
-        Outside Discovery is executed:
-          sap_hostctrl.outside_discovery_executed:
-            - name: sol.my.domain
-            - sld_port: 50000
-            - sld_username: SLD_DS_USER
-            - sld_password: __slot__:salt:vault.read_secret(path="SAP", key="SLD_DS_USER")
-            - username: sapadm
-            - password: __slot__:salt:vault.read_secret(path="os", key="sapadm")
+            Outside Discovery is executed:
+              sap_hostctrl.outside_discovery_executed:
+                - name: sol.my.domain
+                - sld_port: 50000
+                - sld_username: SLD_DS_USER
+                - sld_password: __slot__:salt:vault.read_secret(path="SAP", key="SLD_DS_USER")
+                - username: sapadm
+                - password: __slot__:salt:vault.read_secret(path="os", key="sapadm")
     """
     log.debug("Running function")
     ret = {
@@ -310,6 +315,7 @@ def sda_installed(
         connection.
 
     Example:
+
     .. code-block:: jinja
 
         Simple Diagnostics Agent is installed:

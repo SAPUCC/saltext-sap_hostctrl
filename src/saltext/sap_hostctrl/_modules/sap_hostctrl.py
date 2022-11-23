@@ -5,7 +5,8 @@ Copyright (C) 2022 SAP UCC Magdeburg
 SAP Host Agent execution module
 ===============================
 SaltStack execution module that wraps SAP Host Agent functions.
-:maintainer:    Benjamin Wegener, Alexander Wilke
+
+:codeauthor:    Benjamin Wegener, Alexander Wilke
 :maturity:      new
 :depends:       zeep, requests
 :platform:      Linux
