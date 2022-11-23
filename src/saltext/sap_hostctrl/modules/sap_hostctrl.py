@@ -148,7 +148,8 @@ def list_systems(username, password, fallback=True, fqdn=None, **kwargs):
         return False
     log.debug("Calling service ListInstances")
     response = client.service.ListInstances(aSelector={"aInstanceStatus": "S-INSTALLED"})
-    log.trace(f"Raw response:\n{response.text}")
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
     result = []
     if not isinstance(response, list):
         log.warning("No systems found")
@@ -194,7 +195,8 @@ def list_instances(sid, username, password, fallback=True, fqdn=None, **kwargs):
         return False
     log.debug("Calling service ListInstances")
     response = client.service.ListInstances(aSelector={"aInstanceStatus": "S-INSTALLED"})
-    log.trace(f"Raw response:\n{response.text}")
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
     result = []
     if not isinstance(response, list):
         log.warning("No instances found")
@@ -245,7 +247,8 @@ def list_database_systems(username, password, fallback=True, fqdn=None, **kwargs
     )
     log.debug("Calling service ListDatabases")
     response = client.service.ListDatabaseSystems(aArguments=[])
-    log.trace(f"Raw response:\n{response.text}")
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
     result = []
     if not isinstance(response, list):
         log.warning("No database found")
@@ -328,7 +331,8 @@ def get_database_status(dbname, dbtype, username, password, fallback=True, fqdn=
             ]
         }
     )
-    log.trace(f"Raw response:\n{response.text}")
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
     if not response or "status" not in response:
         log.error("Could not determine database status")
         return False
@@ -384,7 +388,8 @@ def start_database(dbname, dbtype, username, password, fallback=True, fqdn=None,
         },
         aOptions={"mTimeout": 300, "mSoftTimeout": 180, "mOptions": {}},
     )
-    log.trace(f"Raw response:\n{response.text}")
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
     if not response["mOperationResults"]:
         log.error("A timeout occured")
         return False
@@ -443,7 +448,8 @@ def stop_database(dbname, dbtype, username, password, fallback=True, fqdn=None, 
         },
         aOptions={"mTimeout": 300, "mSoftTimeout": 180, "mOptions": {}},
     )
-    log.trace(f"Raw response:\n{response.text}")
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
     if not response["mOperationResults"]:
         log.error("A timeout occured")
         return False
@@ -526,8 +532,9 @@ def configure_outside_discovery(
             "arguments": {},
         }
     )
-    log.trace(f"Raw response:\n{response.text}")
-    if not response:
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
+    else:
         log.error("An error occured")
         return False
 
@@ -580,8 +587,9 @@ def execute_outside_discovery(username, password, fqdn=None, fallback=True, **kw
             ]
         },
     )
-    log.trace(f"Raw response:\n{response.text}")
-    if not response:
+    if response:
+        log.trace(f"Raw response:\n{response.text}")
+    else:
         log.error("An error occured")
         return False
 

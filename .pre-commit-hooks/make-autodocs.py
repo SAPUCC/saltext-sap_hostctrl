@@ -20,13 +20,13 @@ state_path = ref_path / "states"
 for path in Path("src").glob("**/*.py"):
     if path.name == "__init__.py":
         continue
-    if path.parent.name in ("_states", "_modules"):
+    if path.parent.name in ("states", "modules"):
         kind = path.parent.name
         import_path = ".".join(path.with_suffix("").parts[1:])
-        if kind == "_states":
+        if kind == "states":
             all_states.append(import_path)
             rst_path = state_path / (import_path + ".rst")
-        elif kind == "_modules":
+        elif kind == "modules":
             all_mods.append(import_path)
             rst_path = mod_path / (import_path + ".rst")
 
