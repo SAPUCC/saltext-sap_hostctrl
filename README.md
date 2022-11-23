@@ -4,7 +4,7 @@ This SaltStack extensions allows interfaces SAP Host Agents running on minions.
 **THIS PROJECT IS NOT ASSOCIATED WITH SAP IN ANY WAY**
 
 ## Installation
-Run the following to install the SaltStack SAPCAR extension:
+Run the following to install the SaltStack SAP Host Agent extension:
 ```bash
 salt-call pip.install saltext.sap-hostctrl
 ```
